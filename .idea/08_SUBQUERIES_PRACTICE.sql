@@ -36,14 +36,16 @@ where SALARY > (select avg(SALARY)
 
 -- EXISTS 절 문제
 -- DEPARTMENT 테이블에서 직원이 있는 부서의 부서명을 조회하시오.
-    select a.DEPT_TITLE
+    select a.DEPT_TITLE, a.DEPT_ID
     from DEPARTMENT a
     where
-        not exists(
+         exists(
             select
-                DEPT_TITLE
+                b.DEPT_CODE
             from
-
+                employee b
+            where
+                a.DEPT_ID = b.DEPT_CODE
         );
 -- EMPLOYEE 테이블에서 급여가 가장 높은 직원의 이름과 급여를 조회하시오. (NOT EXISTS 사용)
 
